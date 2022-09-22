@@ -239,6 +239,26 @@ class InitializerController extends GetxController {
     );
   }
 
+  Widget? balanceCommunication(enmPaymetnComunication type) {
+    Widget? rez;
+    String? val;
+    if (initializer.value.detail != null) {
+      if (type == enmPaymetnComunication.tmCell) {
+        val = initializer.value.detail!.loc![0].mb == null
+            ? null
+            : initializer.value.detail!.loc![0].mb!.toStringAsFixed(2);
+      } else if (type == enmPaymetnComunication.agtsInternet) {
+        val = initializer.value.detail!.loc![0].ib == null
+            ? null
+            : initializer.value.detail!.loc![0].ib!.toStringAsFixed(2);
+      } else if (type == enmPaymetnComunication.tmTelekom) {
+        val = initializer.value.detail!.loc![0].tb == null
+            ? null
+            : initializer.value.detail!.loc![0].tb!.toStringAsFixed(2);
+      }
+    }
+  }
+
   Widget? balance(enmPaymentType type) {
     Widget? rez;
     String? val;
@@ -300,6 +320,54 @@ class InitializerController extends GetxController {
       val = null;
     }
 
+    return rez;
+  }
+
+  bool badgeCommunication(enmPaymetnComunication type) {
+    var rez = false;
+    if (initializer.value.detail != null) {
+      if (type == enmPaymetnComunication.tmCell &&
+          initializer.value.detail!.loc![0].mb != null) {
+        rez = true;
+      }
+      if (type == enmPaymetnComunication.tmTelekom &&
+          initializer.value.detail!.loc![0].tb != null) {
+        rez = true;
+      }
+      if (type == enmPaymetnComunication.agtsTelefon &&
+          initializer.value.detail!.loc![0].pb != null) {
+        rez = true;
+      }
+      if (type == enmPaymetnComunication.agtsInternet &&
+          initializer.value.detail!.loc![0].ib != null) {
+        rez = true;
+      }
+    }
+    return rez;
+  }
+
+  bool isGoodCommunication(enmPaymetnComunication type) {
+    // initializer.value = await _getInit.getInit();
+    var rez = true;
+    if (initializer.value.detail != null) {
+      if (displayCommunication(type).startsWith("-")) {
+        rez = false;
+      }
+    }
+    return rez;
+  }
+
+  String displayCommunication(enmPaymetnComunication type) {
+    var rez = '';
+    if (type == enmPaymetnComunication.tmTelekom) {
+      rez = initializer.value.detail!.loc![0].tb.toString();
+    }
+    if (type == enmPaymetnComunication.agtsTelefon) {
+      rez = initializer.value.detail!.loc![0].pb.toString();
+    }
+    if (type == enmPaymetnComunication.agtsInternet) {
+      rez = initializer.value.detail!.loc![0].ib.toString();
+    }
     return rez;
   }
 

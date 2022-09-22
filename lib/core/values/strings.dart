@@ -386,6 +386,25 @@ abstract class Strings {
     return LocaleKeys.all.tr;
   }
 
+  static String pathToCommunication(enmPaymetnComunication type) {
+    var rezult = '';
+    switch (type) {
+      case enmPaymetnComunication.tmTelekom:
+        rezult = MyAssetsImages.pngWiFitelekom;
+        break;
+      case enmPaymetnComunication.tmCell:
+        rezult = MyAssetsImages.pngTmCell;
+        break;
+      case enmPaymetnComunication.agtsInternet:
+        rezult = MyAssetsImages.pngWiFiAgts;
+        break;
+      case enmPaymetnComunication.agtsTelefon:
+        rezult = MyAssetsImages.pngAgtsHome;
+        break;
+    }
+    return rezult;
+  }
+
   static String pathToPayMethod(enmPaymentType type) {
     var rezult = '';
     switch (type) {
@@ -515,6 +534,21 @@ abstract class Strings {
       case enmJemagatToleg.gaz:
         return LocaleKeys.ugaz.tr;
     }
+  }
+
+  static String titleOfCommunication(enmPaymetnComunication type) {
+    switch (type) {
+      case enmPaymetnComunication.tmTelekom:
+        return LocaleKeys.telecIinet;
+      case enmPaymetnComunication.tmCell:
+        return LocaleKeys.altAsyr;
+      case enmPaymetnComunication.agtsInternet:
+        return LocaleKeys.astuInet;
+      case enmPaymetnComunication.agtsTelefon:
+        return LocaleKeys.astuTel;
+      default:
+    }
+    return LocaleKeys.all.tr;
   }
 
   static String titleOfPayMethod(enmPaymentType type) {

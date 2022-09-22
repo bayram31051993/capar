@@ -18,7 +18,6 @@ enum enmBankKartlar {
   unknown,
 }
 
-
 enum enmTextFielType {
   none,
   nameField,
@@ -117,7 +116,6 @@ enum enmPaymetnComunication {
   tmTelekom,
   agtsInternet,
   agtsTelefon,
-  pygg
 }
 
 enum enmPaymentCommunal {
@@ -133,7 +131,7 @@ enum enmPaymentType {
   communcation,
   conmmunal,
   // telecomTV
-  
+
   suw_tut,
   // tmcell,
   // airplane,

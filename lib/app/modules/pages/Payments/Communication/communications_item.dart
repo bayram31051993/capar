@@ -3,6 +3,7 @@ import 'package:capar/app/modules/controllers/home_controller.dart';
 import 'package:capar/app/modules/controllers/initializer_controller.dart';
 import 'package:capar/app/modules/pages/CarFines/car_fines.dart';
 import 'package:capar/app/modules/pages/Payments/CheckOutScreen/check_out_screen.dart';
+import 'package:capar/app/modules/pages/Payments/Communication/PayScreens/communication_check.dart';
 import 'package:capar/app/modules/pages/WelcomeScreen/WeolcomePage/welcome_screen.dart';
 import 'package:capar/core/apperience/theme.dart';
 import 'package:capar/core/values/globals.dart';
@@ -15,23 +16,21 @@ import '../../../../../../core/utils/enums.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CommunicationsItem extends GetView<InitializerController> {
-  final enmPaymentType tolegType;
+  final enmPaymetnComunication tolegType;
   final int index;
   CommunicationsItem(this.tolegType, this.index);
 
   @override
   Widget build(BuildContext context) {
-    final title = Strings.titleOfPayMethod(tolegType).tr;
+    final title = Strings.communicationTittletoPayment(tolegType).tr;
 
     return Obx(
       () {
         return GestureDetector(
             child: Padding(
               padding: index.isEven
-                  ? EdgeInsets.only(
-                      right: 5, left: 8.w, bottom: 5.h, top: 8.h)
-                  : EdgeInsets.only(
-                      left: 5, right: 8.w, bottom: 5.h, top: 8.h),
+                  ? EdgeInsets.only(right: 5, left: 8.w, bottom: 5.h, top: 8.h)
+                  : EdgeInsets.only(left: 5, right: 8.w, bottom: 5.h, top: 8.h),
               child: Container(
                 width: 165.w,
                 height: 170.h,
@@ -42,8 +41,8 @@ class CommunicationsItem extends GetView<InitializerController> {
                 child: Column(
                   children: [
                     Badge(
-                      showBadge: controller.condition(tolegType),
-                      badgeColor: controller.isGood(tolegType)
+                      showBadge: controller.badgeCommunication(tolegType),
+                      badgeColor: controller.isGoodCommunication(tolegType)
                           ? greenGlobal
                           : Theme.of(Get.context!).errorColor,
                       animationType: BadgeAnimationType.scale,
@@ -61,7 +60,7 @@ class CommunicationsItem extends GetView<InitializerController> {
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10.r)),
                                 child: Text(
-                                  controller.display(tolegType),
+                                  controller.displayCommunication(tolegType),
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodyText1!
@@ -81,7 +80,7 @@ class CommunicationsItem extends GetView<InitializerController> {
                             alignment: Alignment.center,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(18.r),
-                              gradient: MyPalette.payItemsColor(tolegType),
+
                               //color: Theme.of(context).primaryColor,
                             ),
                             child: Padding(
@@ -90,7 +89,7 @@ class CommunicationsItem extends GetView<InitializerController> {
                               child: Hero(
                                 tag: tolegType.name,
                                 child: Image.asset(
-                                  Strings.pathToPayMethod(
+                                  Strings.pathToCommunication(
                                     tolegType,
                                   ),
                                   //color: Colors.white,
@@ -119,7 +118,8 @@ class CommunicationsItem extends GetView<InitializerController> {
                     Expanded(
                       child: Center(
                         child: Padding(
-                          padding: EdgeInsets.only(top: 10.w, left: 2, right: 2),
+                          padding:
+                              EdgeInsets.only(top: 10.w, left: 2, right: 2),
                           child: Column(
                             children: [
                               SizedBox(
@@ -193,8 +193,8 @@ class CommunicationsItem extends GetView<InitializerController> {
                 //   ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 // }
                 else {
-                  Get.to(() => CheckOutScreen(
-                      type: tolegType,  parametrs: null));
+                  Get.to(() =>
+                      CommunicationCheck(type: tolegType, parametrs: null));
                 }
               } else {
                 Get.to(() => WelcomeScreen());

@@ -1,6 +1,7 @@
 import 'package:capar/app/data/models/PaymentsModel/payments_model.dart';
 import 'package:capar/app/modules/controllers/tolegler_controller.dart';
 import 'package:capar/app/modules/pages/Payments/CheckOutScreen/check_out_app_bar.dart';
+import 'package:capar/app/modules/pages/Payments/Communication/PayScreens/communication_check_app_bar.dart';
 import 'package:capar/core/apperience/ui_elements.dart';
 import 'package:capar/core/values/strings.dart';
 import 'package:capar/core/values/styles.dart';
@@ -11,7 +12,7 @@ import 'package:get/get.dart';
 import 'package:capar/core/utils/enums.dart';
 
 class ServicesPayView extends GetView<ToleglerController> {
-  final enmPaymentType type;
+  final enmPaymetnComunication type;
   // final enmPaymetnComunication comType;
   // final Payment? payment;
   final TextEditingController _phone = TextEditingController();
@@ -19,7 +20,7 @@ class ServicesPayView extends GetView<ToleglerController> {
   final GlobalKey<FormState> _keyForm = GlobalKey<FormState>();
   ServicesPayView( this.type);
 
-  enmTextFielType fielType(enmPaymentType type) {
+  enmTextFielType fielType(enmPaymetnComunication type) {
     if (type == enmPaymetnComunication.tmCell) {
       return enmTextFielType.cellPhoneField;
     } else {
@@ -100,7 +101,7 @@ class ServicesPayView extends GetView<ToleglerController> {
               child: Column(
                 //mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  CheckoutAppBar(type: type),
+                  CommunicationCheckAppBar(type: type),
                   SizedBox(height: 20.h),
                   Spaces.horizontal(
                     UIElements.customTextField(

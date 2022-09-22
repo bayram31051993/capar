@@ -17,7 +17,10 @@ class UpdateUsrInfoRequest {
       final response = await http.post(
         Uri.parse(update_user_info),
         body: {"crn": crn!},
-        headers: {'Cookie': 'csrftoken=$token $sessionId'},
+        headers: {
+          'Cookie': 'csrftoken=$token $sessionId',
+          'X-CSRFToken': '$token',
+        },
       );
       print('Usr update: ${response.body}');
       print(response.statusCode);

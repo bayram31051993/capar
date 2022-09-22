@@ -1,3 +1,5 @@
+import 'package:capar/app/modules/controllers/initializer_controller.dart';
+import 'package:capar/app/modules/pages/Payments/Communication/communications_item.dart';
 import 'package:capar/generated/locales.g.dart';
 import 'package:flutter/material.dart';
 import 'package:capar/core/utils/enums.dart';
@@ -37,7 +39,37 @@ class CommunicationScreen extends StatelessWidget {
           ],
         ),
       ),
-      
+      body: Stack(
+        children: [
+          Container(
+            margin: EdgeInsets.only(left: 3),
+            child: RefreshIndicator(
+              child: Material(
+                child: SizedBox(
+                  width: 360.w,
+                  height: 800.h,
+                  child: SingleChildScrollView(
+                      scrollDirection: Axis.vertical,
+                      child: Wrap(
+                        children: [
+                          ...enmPaymetnComunication.values.map(
+                            (e) {
+                              // if (e == enmPaymentType.capar) {
+                              //   return CaparTab();
+                              // }
+                              return CommunicationsItem(
+                                  e, enmPaymetnComunication.values.indexOf(e));
+                            },
+                          ).toList()
+                        ],
+                      )),
+                ),
+              ),
+              onRefresh: () => Get.find<InitializerController>().loadInitials(),
+            ),
+          )
+        ],
+      ),
     );
   }
 }
