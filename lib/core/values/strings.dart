@@ -386,6 +386,34 @@ abstract class Strings {
     return LocaleKeys.all.tr;
   }
 
+  static String mediaTittlePayment(enmPaymentMedia type) {
+    var rezult = '';
+    switch (type) {
+      case enmPaymentMedia.agtsIpTv:
+        rezult = MyAssetsImages.pngTv;
+        break;
+      case enmPaymentMedia.cabelTV:
+        rezult = MyAssetsImages.pngIpTv;
+        break;
+      default:
+    }
+    return rezult;
+  }
+
+  static String communalTittletoPayment(enmPaymentCommunal type) {
+    var result = '';
+    switch (type) {
+      case enmPaymentCommunal.water:
+        return LocaleKeys.uwater;
+      case enmPaymentCommunal.electro:
+        return LocaleKeys.uelectro;
+      case enmPaymentCommunal.utils:
+        return LocaleKeys.utils;
+      default:
+    }
+    return LocaleKeys.all.tr;
+  }
+
   static String pathToCommunication(enmPaymetnComunication type) {
     var rezult = '';
     switch (type) {
@@ -400,6 +428,35 @@ abstract class Strings {
         break;
       case enmPaymetnComunication.agtsTelefon:
         rezult = MyAssetsImages.pngAgtsHome;
+        break;
+    }
+    return rezult;
+  }
+
+  static String pathToMedia(enmPaymentMedia type) {
+    var rezult = '';
+    switch (type) {
+      case enmPaymentMedia.agtsIpTv:
+        rezult = MyAssetsImages.pngIpTv;
+        break;
+      case enmPaymentMedia.cabelTV:
+        rezult = MyAssetsImages.pngTv;
+        break;
+    }
+    return rezult;
+  }
+
+  static String pathToCommunal(enmPaymentCommunal type) {
+    var rezult = '';
+    switch (type) {
+      case enmPaymentCommunal.water:
+        rezult = MyAssetsImages.pngWater;
+        break;
+      case enmPaymentCommunal.electro:
+        rezult = MyAssetsImages.pngElectro;
+        break;
+      case enmPaymentCommunal.utils:
+        rezult = MyAssetsImages.pngUtils;
         break;
     }
     return rezult;
@@ -549,6 +606,28 @@ abstract class Strings {
       default:
     }
     return LocaleKeys.all.tr;
+  }
+
+  static String titleOfMedia(enmPaymentMedia type) {
+    switch (type) {
+      case enmPaymentMedia.agtsIpTv:
+        return LocaleKeys.astuIptv;
+      case enmPaymentMedia.cabelTV:
+        return LocaleKeys.cableTv;
+    }
+  }
+
+  static String titleOfCommunal(enmPaymentCommunal type) {
+    switch (type) {
+      case enmPaymentCommunal.water:
+        return LocaleKeys.uwater;
+      case enmPaymentCommunal.electro:
+        return LocaleKeys.uelectro;
+      case enmPaymentCommunal.utils:
+        return LocaleKeys.utils;
+      default:
+        return LocaleKeys.all.tr;
+    }
   }
 
   static String titleOfPayMethod(enmPaymentType type) {

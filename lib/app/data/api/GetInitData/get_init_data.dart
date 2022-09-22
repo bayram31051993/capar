@@ -22,8 +22,9 @@ class InitProvider extends GetConnect {
     final response = await http.get(
       Uri.parse(getInitUrl),
       headers: {
-        'Cookie' : 'csrftoken=$token; $sessionId',
+        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
         'X-CSRFToken': '$token',
+        'Cookie' : 'csrftoken=$token; $sessionId',
       },
     );
 

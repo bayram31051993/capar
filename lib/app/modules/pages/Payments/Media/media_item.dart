@@ -1,37 +1,32 @@
 import 'package:badges/badges.dart';
-import 'package:capar/app/modules/controllers/home_controller.dart';
 import 'package:capar/app/modules/controllers/initializer_controller.dart';
 import 'package:capar/app/modules/pages/CarFines/car_fines.dart';
-import 'package:capar/app/modules/pages/Payments/CheckOutScreen/check_out_screen.dart';
+import 'package:capar/app/modules/pages/Payments/Media/PayScreens/media_check.dart';
 import 'package:capar/app/modules/pages/WelcomeScreen/WeolcomePage/welcome_screen.dart';
 import 'package:capar/core/apperience/theme.dart';
 import 'package:capar/core/values/globals.dart';
 import 'package:capar/core/values/strings.dart';
-import 'package:capar/generated/locales.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import '../../../../../../core/utils/enums.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:capar/core/utils/enums.dart';
 
-class TolegItemView extends GetView<InitializerController> {
-  final enmPaymentType tolegType;
+class MediaItem extends GetView<InitializerController> {
+  final enmPaymentMedia tolegType;
   final int index;
-  TolegItemView(this.tolegType, this.index);
+  MediaItem(this.tolegType, this.index);
 
   @override
   Widget build(BuildContext context) {
-    final title = Strings.titleOfPayMethod(tolegType).tr;
+    final title = Strings.mediaTittlePayment(tolegType).tr;
 
     return Obx(
       () {
         return GestureDetector(
             child: Padding(
               padding: index.isEven
-                  ? EdgeInsets.only(
-                      right: 5, left: 8.w, bottom: 5.h, top: 8.h)
-                  : EdgeInsets.only(
-                      left: 5, right: 8.w, bottom: 5.h, top: 8.h),
+                  ? EdgeInsets.only(right: 5, left: 8.w, bottom: 5.h, top: 8.h)
+                  : EdgeInsets.only(left: 5, right: 8.w, bottom: 5.h, top: 8.h),
               child: Container(
                 width: 165.w,
                 height: 170.h,
@@ -42,8 +37,8 @@ class TolegItemView extends GetView<InitializerController> {
                 child: Column(
                   children: [
                     Badge(
-                      showBadge: controller.condition(tolegType),
-                      badgeColor: controller.isGood(tolegType)
+                      showBadge: controller.badgeMedia(tolegType),
+                      badgeColor: controller.isGoodMedia(tolegType)
                           ? greenGlobal
                           : Theme.of(Get.context!).errorColor,
                       animationType: BadgeAnimationType.scale,
@@ -61,7 +56,7 @@ class TolegItemView extends GetView<InitializerController> {
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10.r)),
                                 child: Text(
-                                  controller.display(tolegType),
+                                  controller.displayMedia(tolegType),
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodyText1!
@@ -81,7 +76,7 @@ class TolegItemView extends GetView<InitializerController> {
                             alignment: Alignment.center,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(18.r),
-                              // gradient: MyPalette.payItemsColor(tolegType),
+
                               //color: Theme.of(context).primaryColor,
                             ),
                             child: Padding(
@@ -90,7 +85,7 @@ class TolegItemView extends GetView<InitializerController> {
                               child: Hero(
                                 tag: tolegType.name,
                                 child: Image.asset(
-                                  Strings.pathToPayMethod(
+                                  Strings.pathToMedia(
                                     tolegType,
                                   ),
                                   //color: Colors.white,
@@ -119,7 +114,8 @@ class TolegItemView extends GetView<InitializerController> {
                     Expanded(
                       child: Center(
                         child: Padding(
-                          padding: EdgeInsets.only(top: 10.w, left: 2, right: 2),
+                          padding:
+                              EdgeInsets.only(top: 10.w, left: 2, right: 2),
                           child: Column(
                             children: [
                               SizedBox(
@@ -135,23 +131,6 @@ class TolegItemView extends GetView<InitializerController> {
                                         fontSize: 18.sp,
                                         fontWeight: FontWeight.bold,
                                         height: 1.h),
-                              ),
-                              SizedBox(
-                                height: 5.h,
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    "ünjyb,elm ünjlaksnkjas kajsdasjd",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontSize: 13.sp,
-                                      color: Colors.grey,
-                                      fontWeight: FontWeight.w300,
-                                    ),
-                                  ),
-                                ],
                               ),
                             ],
                           ),
@@ -193,8 +172,7 @@ class TolegItemView extends GetView<InitializerController> {
                 //   ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 // }
                 else {
-                  Get.to(() => CheckOutScreen(
-                      type: tolegType,  parametrs: null));
+                  Get.to(() => MediaCheck(type: tolegType, parametrs: null));
                 }
               } else {
                 Get.to(() => WelcomeScreen());

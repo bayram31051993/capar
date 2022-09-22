@@ -80,7 +80,7 @@ class MyPalette {
         color: Colors.black.withOpacity(0.3),
         spreadRadius: 10.r,
         blurRadius: 40.r,
-        offset: Offset(-5, 5),
+        offset: const Offset(-5, 5),
         // changes position of shadow
       ),
     ];
@@ -89,7 +89,7 @@ class MyPalette {
   static List<BoxShadow> bigItemShadow() {
     return [
       BoxShadow(
-        offset: Offset(1, 2),
+        offset: const Offset(1, 2),
         color: Colors.black.withOpacity(0.3),
         blurRadius: 15,
         spreadRadius: 5,
@@ -103,13 +103,121 @@ class MyPalette {
         color: Colors.black.withOpacity(0.1),
         spreadRadius: 5.r,
         blurRadius: 20.r,
-        offset: Offset(-5, 5),
+        offset: const Offset(-5, 5),
         // changes position of shadow
       ),
     ];
   }
 
-  static Gradient payItemsColor(enmPaymentType type) {
+  static Gradient payItemcColorPYGG(enmPaymentType type) {
+    Gradient color;
+    switch (type) {
+      case enmPaymentType.pygg:
+        color = const LinearGradient(
+          begin: Alignment.bottomLeft,
+          end: Alignment.topRight,
+          colors: [
+            Color.fromARGB(255, 173, 206, 199),
+            Color.fromARGB(255, 208, 196, 221),
+          ],
+        );
+        break;
+      default:
+        color = const LinearGradient(
+          begin: Alignment.bottomLeft,
+          end: Alignment.topRight,
+          colors: [
+            Colors.transparent,
+            Colors.transparent,
+          ],
+        );
+    }
+    return color;
+  }
+
+  static Gradient payItemCommunal(enmPaymentCommunal type) {
+    Gradient color;
+    switch (type) {
+      case enmPaymentCommunal.water:
+        color = const LinearGradient(
+          begin: Alignment.bottomLeft,
+          end: Alignment.topRight,
+          colors: [
+            Color.fromARGB(255, 178, 207, 230),
+            Color.fromARGB(255, 162, 198, 228),
+          ],
+        );
+        break;
+      case enmPaymentCommunal.electro:
+        color = const LinearGradient(
+          begin: Alignment.bottomLeft,
+          end: Alignment.topRight,
+          colors: [
+            Color.fromARGB(255, 221, 203, 168),
+            Color.fromARGB(255, 224, 212, 156),
+          ],
+        );
+        break;
+      case enmPaymentCommunal.utils:
+        color = const LinearGradient(
+          begin: Alignment.bottomLeft,
+          end: Alignment.topRight,
+          colors: [
+            Color.fromARGB(255, 171, 176, 214),
+            Color.fromARGB(255, 233, 194, 235),
+          ],
+        );
+        break;
+      default:
+        color = const LinearGradient(
+          begin: Alignment.bottomLeft,
+          end: Alignment.topRight,
+          colors: [
+            Colors.transparent,
+            Colors.transparent,
+          ],
+        );
+    }
+    return color;
+  }
+
+  static Gradient payItemMedia(enmPaymentMedia type) {
+    Gradient color;
+    switch (type) {
+      case enmPaymentMedia.agtsIpTv:
+        color = const LinearGradient(
+          begin: Alignment.bottomLeft,
+          end: Alignment.topRight,
+          colors: [
+            Color.fromARGB(255, 190, 158, 158),
+            Color.fromARGB(226, 175, 174, 228),
+          ],
+        );
+        break;
+      case enmPaymentMedia.cabelTV:
+        color = const LinearGradient(
+          begin: Alignment.bottomLeft,
+          end: Alignment.topRight,
+          colors: [
+            Color.fromARGB(255, 190, 158, 158),
+            Color.fromARGB(226, 175, 174, 228),
+          ],
+        );
+        break;
+      default:
+        color = const LinearGradient(
+          begin: Alignment.bottomLeft,
+          end: Alignment.topRight,
+          colors: [
+            Colors.transparent,
+            Colors.transparent,
+          ],
+        );
+    }
+    return color;
+  }
+
+  static Gradient payItemsColor(enmPaymetnComunication type) {
     Gradient color;
     switch (type) {
       // case enmPaymentType.capar:
@@ -133,46 +241,46 @@ class MyPalette {
       //     ],
       //   );
       //   break;
-      // case enmPaymentType.tmTelekom:
-      //   color = LinearGradient(
-      //     begin: Alignment.bottomLeft,
-      //     end: Alignment.topRight,
-      //     colors: [
-      //       Color.fromARGB(255, 218, 185, 223),
-      //       Color.fromARGB(255, 171, 172, 212),
-      //     ],
-      //   );
-      //   break;
-      // case enmPaymentType.tmCell:
-      //   color = LinearGradient(
-      //     begin: Alignment.bottomLeft,
-      //     end: Alignment.topRight,
-      //     colors: [
-      //       Color.fromARGB(255, 147, 178, 224),
-      //       Color.fromARGB(255, 221, 187, 241),
-      //     ],
-      //   );
-      //   break;
-      // case enmPaymentType.agtsInternet:
-      //   color = LinearGradient(
-      //     begin: Alignment.bottomLeft,
-      //     end: Alignment.topRight,
-      //     colors: [
-      //       Color.fromARGB(255, 183, 172, 228),
-      //       Color.fromARGB(255, 162, 197, 211),
-      //     ],
-      //   );
-      //   break;
-      // case enmPaymentType.agtsTelefon:
-      //   color = LinearGradient(
-      //     begin: Alignment.bottomLeft,
-      //     end: Alignment.topRight,
-      //     colors: [
-      //       Color.fromARGB(255, 163, 187, 223),
-      //       Color.fromARGB(255, 169, 207, 214),
-      //     ],
-      //   );
-      //   break;
+      case enmPaymetnComunication.tmTelekom:
+        color = const LinearGradient(
+          begin: Alignment.bottomLeft,
+          end: Alignment.topRight,
+          colors: [
+            Color.fromARGB(255, 218, 185, 223),
+            Color.fromARGB(255, 171, 172, 212),
+          ],
+        );
+        break;
+      case enmPaymetnComunication.tmCell:
+        color = const LinearGradient(
+          begin: Alignment.bottomLeft,
+          end: Alignment.topRight,
+          colors: [
+            Color.fromARGB(255, 147, 178, 224),
+            Color.fromARGB(255, 221, 187, 241),
+          ],
+        );
+        break;
+      case enmPaymetnComunication.agtsInternet:
+        color = const LinearGradient(
+          begin: Alignment.bottomLeft,
+          end: Alignment.topRight,
+          colors: [
+            Color.fromARGB(255, 183, 172, 228),
+            Color.fromARGB(255, 162, 197, 211),
+          ],
+        );
+        break;
+      case enmPaymetnComunication.agtsTelefon:
+        color = const LinearGradient(
+          begin: Alignment.bottomLeft,
+          end: Alignment.topRight,
+          colors: [
+            Color.fromARGB(255, 163, 187, 223),
+            Color.fromARGB(255, 169, 207, 214),
+          ],
+        );
+        break;
       // case enmPaymentType.agtsIpTv:
       //   color = LinearGradient(
       //     begin: Alignment.bottomLeft,
@@ -223,16 +331,16 @@ class MyPalette {
       //     ],
       //   );
       //   break;
-        // case enmPaymentType.ticket:
-        // color = const LinearGradient(
-        //   begin: Alignment.bottomLeft,
-        //   end: Alignment.topRight,
-        //   colors: [
-        //     Color.fromARGB(255, 163, 187, 223),
-        //     Color.fromARGB(255, 169, 207, 214),
-        //   ],
-        // );
-        // break;
+      // case enmPaymentType.ticket:
+      // color = const LinearGradient(
+      //   begin: Alignment.bottomLeft,
+      //   end: Alignment.topRight,
+      //   colors: [
+      //     Color.fromARGB(255, 163, 187, 223),
+      //     Color.fromARGB(255, 169, 207, 214),
+      //   ],
+      // );
+      // break;
       // case enmPaymentType.suw_tut:
       //   color = const LinearGradient(
       //     begin: Alignment.bottomLeft,
@@ -242,19 +350,18 @@ class MyPalette {
       //       Color.fromARGB(226, 175, 174, 228),
       //     ],
       //   );
-        // break;
+      // break;
 
-
-        // case enmPaymentType.telecomTV:
-        // color = LinearGradient(
-        //   begin: Alignment.bottomLeft,
-        //   end: Alignment.topRight,
-        //   colors: [
-        //     Color.fromARGB(255, 171, 176, 214),
-        //     Color.fromARGB(255, 233, 194, 235),
-        //   ],
-        // );
-        // break;
+      // case enmPaymentType.telecomTV:
+      // color = LinearGradient(
+      //   begin: Alignment.bottomLeft,
+      //   end: Alignment.topRight,
+      //   colors: [
+      //     Color.fromARGB(255, 171, 176, 214),
+      //     Color.fromARGB(255, 233, 194, 235),
+      //   ],
+      // );
+      // break;
       // case enmPaymentType.cabelTV:
       //   color = LinearGradient(
       //     begin: Alignment.bottomLeft,
@@ -296,7 +403,7 @@ class MyPalette {
       //   );
       //   break;
       default:
-        color = LinearGradient(
+        color = const LinearGradient(
           begin: Alignment.bottomLeft,
           end: Alignment.topRight,
           colors: [

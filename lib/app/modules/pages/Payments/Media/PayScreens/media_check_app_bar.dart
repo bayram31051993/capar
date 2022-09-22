@@ -3,23 +3,20 @@ import 'package:capar/core/apperience/theme.dart';
 import 'package:capar/core/utils/enums.dart';
 import 'package:capar/core/values/strings.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-class CommunicationCheckAppBar extends StatelessWidget {
-  final enmPaymetnComunication type;
+class MediaCheckAppBar extends StatelessWidget {
+  final enmPaymentMedia type;
   final Widget? table;
   final String? givenTitle;
-  CommunicationCheckAppBar({required this.type, this.table, this.givenTitle});
+  MediaCheckAppBar({required this.type, this.table, this.givenTitle});
 
   @override
   Widget build(BuildContext context) {
     var topH = MediaQuery.of(context).viewPadding.top;
-    final title = Strings.titleOfCommunication(type).tr;
-    final balance =
-        Get.find<InitializerController>().balanceCommunication(type);
+    final title = Strings.titleOfMedia(type).tr;
+    final balance = Get.find<InitializerController>().balanceMedia(type);
     var ht = topH + 85.h;
     if (balance == null) {
       ht = topH + 70.h;
@@ -35,7 +32,7 @@ class CommunicationCheckAppBar extends StatelessWidget {
             bottomLeft: Radius.circular(35.r),
             bottomRight: Radius.circular(35.r),
           ),
-          gradient: MyPalette.payItemsColor(type),
+          gradient: MyPalette.payItemMedia(type),
           boxShadow: MyPalette.bannerShadow()),
       child: Column(
         children: [

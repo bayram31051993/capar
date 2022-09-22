@@ -53,10 +53,13 @@ class CabinetRequest extends GetConnect {
     String? sessionId = prefs.getString('sessionId');
     final header = {
       // 'Content-Type': 'application/json; charset=UTF-8',
-      'X-CSRFToken': '$token',
+      // 'X-CSRFToken': '$token',
       // 'Set-Cookie': '$sessionId',
       // "Cookie": "mycookie=true"
-      'Cookie' : 'csrftoken=$token; $sessionId'
+      // 'Cookie' : 'csrftoken=$token; $sessionId'
+      "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+      'X-CSRFToken': '$token',
+      'Cookie': 'csrftoken=$token; $sessionId',
     };
     final response = await http.get(Uri.parse(who_i_am), headers: header
         //  {

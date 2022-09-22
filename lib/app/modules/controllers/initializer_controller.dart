@@ -259,6 +259,22 @@ class InitializerController extends GetxController {
     }
   }
 
+  Widget? balanceMedia(enmPaymentMedia type) {
+    Widget? rez;
+    String? val;
+    if (initializer.value.detail != null) {
+      if (type == enmPaymentMedia.agtsIpTv) {
+        val = initializer.value.detail!.loc![0].ipb == null
+            ? null
+            : initializer.value.detail!.loc![0].ipb!.toStringAsFixed(2);
+      } else if (type == enmPaymentMedia.cabelTV) {
+        val = initializer.value.detail!.loc![0].cb == null
+            ? null
+            : initializer.value.detail!.loc![0].cb;
+      }
+    }
+  }
+
   Widget? balance(enmPaymentType type) {
     Widget? rez;
     String? val;
@@ -346,11 +362,58 @@ class InitializerController extends GetxController {
     return rez;
   }
 
+  bool badgeMedia(enmPaymentMedia type) {
+    var rez = false;
+    if (initializer.value.detail != null) {
+      if (type == enmPaymentMedia.agtsIpTv &&
+          initializer.value.detail!.loc![0].ipb != null) {
+        rez = true;
+      }
+      if (type == enmPaymentMedia.agtsIpTv &&
+          initializer.value.detail!.loc![0].cb != null) {
+        rez = true;
+      }
+    }
+    return rez;
+  }
+
+  bool badgeCommunal(enmPaymentCommunal type) {
+    var rez = false;
+    if (initializer.value.detail != null) {
+      if (type == enmPaymentCommunal.utils &&
+          initializer.value.detail!.loc![0].ut != null) {
+        rez = true;
+      }
+    }
+    return rez;
+  }
+
+  bool isGoodMedia(enmPaymentMedia type) {
+    // initializer.value = await _getInit.getInit();
+    var rez = true;
+    if (initializer.value.detail != null) {
+      if (displayMedia(type).startsWith("-")) {
+        rez = false;
+      }
+    }
+    return rez;
+  }
+
   bool isGoodCommunication(enmPaymetnComunication type) {
     // initializer.value = await _getInit.getInit();
     var rez = true;
     if (initializer.value.detail != null) {
       if (displayCommunication(type).startsWith("-")) {
+        rez = false;
+      }
+    }
+    return rez;
+  }
+
+  bool isGoodCommunal(enmPaymentCommunal type) {
+    var rez = true;
+    if (initializer.value.detail != null) {
+      if (displayCommunal(type).startsWith("-")) {
         rez = false;
       }
     }
@@ -371,42 +434,32 @@ class InitializerController extends GetxController {
     return rez;
   }
 
+  String displayMedia(enmPaymentMedia type) {
+    var rez = '';
+    if (type == enmPaymentMedia.agtsIpTv) {
+      rez = initializer.value.detail!.loc![0].ipb.toString();
+    }
+    if (type == enmPaymentMedia.cabelTV) {
+      rez = initializer.value.detail!.loc![0].cb.toString();
+    }
+    return rez;
+  }
+
+  String displayCommunal(enmPaymentCommunal type) {
+    var rez = '';
+    if (type == enmPaymentCommunal.utils) {
+      rez = initializer.value.detail!.loc![0].ut.toString();
+    }
+    return rez;
+  }
+
   bool condition(enmPaymentType type) {
-    //true to sgow, true to hide
     var rez = false;
     if (initializer.value.detail != null) {
-      // if (type == enmPaymentType.tmCell &&
-      //     initializer.value.detail!.loc![0].mb != null) {
-      //   rez = true;
-      // }
       if (type == enmPaymentType.pygg &&
           initializer.value.detail!.loc![0].fp != 0) {
         rez = true;
       }
-      // if (type == enmPaymentType.tmTelekom &&
-      //     initializer.value.detail!.loc![0].tb != null) {
-      //   rez = true;
-      // }
-      // if (type == enmPaymentType.agtsTelefon &&
-      //     initializer.value.detail!.loc![0].pb != null) {
-      //   rez = true;
-      // }
-      // if (type == enmPaymentType.agtsInternet &&
-      //     initializer.value.detail!.loc![0].ib != null) {
-      //   rez = true;
-      // }
-      // if (type == enmPaymentType.utils &&
-      //     initializer.value.detail!.loc![0].ut != null) {
-      //   rez = true;
-      // }
-      // if (type == enmPaymentType.agtsIpTv &&
-      //     initializer.value.detail!.loc![0].ipb != null) {
-      //   rez = true;
-      // }
-      // if (type == enmPaymentType.cabelTV &&
-      //     initializer.value.detail!.loc![0].cb != null) {
-      //   rez = true;
-      // }
     }
 
     return rez;
@@ -415,41 +468,15 @@ class InitializerController extends GetxController {
   String display(enmPaymentType type) {
     var rez = "0";
     if (initializer.value.detail != null) {
-      // if (type == enmPaymentType.tmCell) {
-      //   rez = initializer.value.detail!.loc![0].mb == null
-      //       ? ""
-      //       : initializer.value.detail!.loc![0].mb!.toStringAsFixed(2);
-      // }
       if (type == enmPaymentType.pygg) {
         rez = initializer.value.detail!.loc![0].fp.toString();
       }
-      // if (type == enmPaymentType.tmTelekom) {
-      //   rez = initializer.value.detail!.loc![0].tb.toString();
-      // }
-      // if (type == enmPaymentType.agtsTelefon) {
-      //   rez = initializer.value.detail!.loc![0].pb.toString();
-      // }
-      // if (type == enmPaymentType.agtsInternet) {
-      //   rez = initializer.value.detail!.loc![0].ib.toString();
-      // }
-      // if (type == enmPaymentType.agtsIpTv) {
-      //   rez = initializer.value.detail!.loc![0].ipb.toString();
-      // }
-      // if (type == enmPaymentType.utils) {
-      //   rez = initializer.value.detail!.loc![0].ut.toString();
-      // }
-      // if (type == enmPaymentType.cabelTV) {
-      //   rez = initializer.value.detail!.loc![0].cb.toString();
-      // }
     }
-    // if (type == enmPaymentType.telecomTV) {
-    //   rez = initializer.value.telecomTV.toString();
-    // }
+
     return rez;
   }
 
   bool isGood(enmPaymentType type) {
-    // initializer.value = await _getInit.getInit();
     var rez = true;
     if (initializer.value.detail != null) {
       if (type == enmPaymentType.pygg &&

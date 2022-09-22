@@ -136,23 +136,6 @@ class CommunicationsItem extends GetView<InitializerController> {
                                         fontWeight: FontWeight.bold,
                                         height: 1.h),
                               ),
-                              SizedBox(
-                                height: 5.h,
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    "ünjyb,elm ünjlaksnkjas kajsdasjd",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontSize: 13.sp,
-                                      color: Colors.grey,
-                                      fontWeight: FontWeight.w300,
-                                    ),
-                                  ),
-                                ],
-                              ),
                             ],
                           ),
                         ),

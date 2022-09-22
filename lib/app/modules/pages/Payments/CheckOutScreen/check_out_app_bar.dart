@@ -32,7 +32,7 @@ class CheckoutAppBar extends StatelessWidget {
             bottomLeft: Radius.circular(35.r),
             bottomRight: Radius.circular(35.r),
           ),
-          gradient: MyPalette.payItemsColor(type),
+          // gradient: MyPalette.payItemsColor(type),
           boxShadow: MyPalette.bannerShadow()),
       child: Column(
         children: [

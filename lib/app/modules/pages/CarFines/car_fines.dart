@@ -147,7 +147,7 @@ class CarFinesScreen extends StatelessWidget {
                 bottomLeft: Radius.circular(50.r),
                 bottomRight: Radius.circular(50.r),
               ),
-              gradient: MyPalette.payItemsColor(enmPaymentType.pygg),
+              gradient: MyPalette.payItemcColorPYGG(enmPaymentType.pygg),
               boxShadow: MyPalette.bannerShadow(),
             ),
             child: Column(
