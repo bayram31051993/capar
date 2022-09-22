@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "59159388912",
+    "project_id": "capar-4c536",
+    "storage_bucket": "capar-4c536.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:59159388912:android:dd85cb1ca4388a27e31835",
+        "android_client_info": {
+          "package_name": "tm.gov.turkmenpost.caparpay"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "59159388912-fiehbbuc39ojfkcuu9me62flnnou7fd0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDueOiCjecIkyFEmeIG0zUaFhZkmznM7Bw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "59159388912-fiehbbuc39ojfkcuu9me62flnnou7fd0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
