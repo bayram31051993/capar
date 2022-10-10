@@ -2,6 +2,7 @@ import 'package:capar/app/modules/controllers/home_controller.dart';
 import 'package:capar/app/modules/controllers/initializer_controller.dart';
 import 'package:capar/app/modules/controllers/radar_controller.dart';
 import 'package:capar/app/modules/controllers/ticket_controller.dart';
+import 'package:capar/app/modules/controllers/tolegler_controller.dart';
 import 'package:capar/app/modules/controllers/trek_controller.dart';
 import 'package:get/get.dart';
 
@@ -20,10 +21,10 @@ class InitializerBinding extends Bindings {
     //   () => CaparController(),
     //   fenix: true,
     // );
-    // Get.lazyPut<ToleglerController>(
-    //   () => ToleglerController(),
-    //   fenix: true,
-    // );
+    Get.lazyPut<ToleglerController>(
+      () => ToleglerController(),
+      fenix: true,
+    );
     // Get.lazyPut<SmsLoginProvider>(
     //   () => SmsLoginProvider(),
     //   fenix: true,

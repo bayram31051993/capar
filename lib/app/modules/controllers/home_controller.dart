@@ -38,6 +38,7 @@ class HomeController extends GetxController {
 
   @override
   onInit() {
+    getCabinetValue();
     super.onInit();
 
     List<String>? all = PrvStorage().getListValues(enmStorageKeys.cardList);

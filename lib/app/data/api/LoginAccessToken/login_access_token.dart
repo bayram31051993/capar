@@ -30,14 +30,14 @@ class LoginAccessTokenPost {
       debugPrint(headers.toString());
       if (response.statusCode == 200 || response.statusCode < 300) {
         return LoginAccessTokenModel.fromJson(jsonDecode(response.body));
-      // } else if (response.statusCode == 422 || response.statusCode == 404) {
-      //   DialogHandler.dialogMSG(enmDialogType.error,
-      //       title: LocaleKeys.error.tr,
-      //       subtitle: LocaleKeys.chUser.tr,
-      //       onOkAction: () => Get.back());
+        // } else if (response.statusCode == 422 || response.statusCode == 404) {
+        //   DialogHandler.dialogMSG(enmDialogType.error,
+        //       title: LocaleKeys.error.tr,
+        //       subtitle: LocaleKeys.chUser.tr,
+        //       onOkAction: () => Get.back());
 
-      //   throw Exception("Error");
-      // }
+        //   throw Exception("Error");
+        // }
       } else {
         throw Exception("Error");
       }
@@ -51,14 +51,17 @@ class LoginAccessTokenPost {
     String? rawCookie = response.headers['set-cookie'];
     String sessionIdText = '';
     if (rawCookie != null) {
-      int index = rawCookie.indexOf(';');
-      headers['cookie'] =
-          (index == -1) ? rawCookie : rawCookie.substring(0, index);
+      int index = rawCookie.indexOf('sessionid');
+      debugPrint(index.toString());
+      headers['sessionid'] =
+          (index == 0) ? rawCookie : rawCookie.substring(index+10, index+42);
       headers.values.forEach((element) {
         sessionIdText = element;
       });
       final prefs = await SharedPreferences.getInstance();
       prefs.setString("sessionId", sessionIdText);
+      debugPrint(rawCookie);
+      debugPrint(headers.toString());
     }
   }
 }

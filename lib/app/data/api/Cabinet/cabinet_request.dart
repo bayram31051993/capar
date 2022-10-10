@@ -59,7 +59,7 @@ class CabinetRequest extends GetConnect {
       // 'Cookie' : 'csrftoken=$token; $sessionId'
       "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
       'X-CSRFToken': '$token',
-      'Cookie': 'csrftoken=$token; $sessionId',
+      'Cookie': 'csrftoken=$token; sessionid=$sessionId',
     };
     final response = await http.get(Uri.parse(who_i_am), headers: header
         //  {

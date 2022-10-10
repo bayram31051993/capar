@@ -24,11 +24,11 @@ class InitProvider extends GetConnect {
       headers: {
         "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
         'X-CSRFToken': '$token',
-        'Cookie' : 'csrftoken=$token; $sessionId',
+        'Cookie': 'csrftoken=$token; sessionid=$sessionId',
       },
     );
 
-    debugPrint("Body: ${response.body}");
+    // debugPrint("Body: ${response.body}");
     debugPrint("Token Init Data: $token");
     debugPrint("Code Init: ${response.statusCode}");
     debugPrint("SessionID Get Init: $sessionId");

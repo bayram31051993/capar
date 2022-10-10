@@ -83,7 +83,8 @@ class InitializerController extends GetxController {
   void onInit() async {
     // checkToken();
     super.onInit();
-    loadInitials();
+    // loadInitials();
+    // cabinet.getCabinetValue();
     home_loadInitials();
   }
 
@@ -104,8 +105,12 @@ class InitializerController extends GetxController {
   }
 
   getCodeRequest(context) {
-    future_get_sms_code_model =
-        getUserSmsCodePost.loginAccessToke(phoneNumber.text);
+    future_get_sms_code_model = getUserSmsCodePost.loginAccessToke(
+      phoneNumber.text
+          .toString()
+          .replaceAll("+(993) ", "")
+          .replaceAll(RegExp("-"), ""),
+    );
     show_code_field(true);
     hide_get_code_btn(false);
   }
@@ -130,7 +135,11 @@ class InitializerController extends GetxController {
   Future<bool> registrationFunction() async {
     authRequestSending(true);
     final result = await loginAccessTokenPost.login_access_token(
-        phoneNumber.text, pass.text);
+        phoneNumber.text
+            .toString()
+            .replaceAll("+(993) ", "")
+            .replaceAll(RegExp("-"), ""),
+        pass.text);
     if (result == null) {
       onError();
       return false;
@@ -422,33 +431,43 @@ class InitializerController extends GetxController {
 
   String displayCommunication(enmPaymetnComunication type) {
     var rez = '';
-    if (type == enmPaymetnComunication.tmTelekom) {
-      rez = initializer.value.detail!.loc![0].tb.toString();
+    if (initializer.value.detail != null) {
+      if (type == enmPaymetnComunication.tmCell) {
+        rez = initializer.value.detail!.loc![0].tb.toString();
+      }
+      if (type == enmPaymetnComunication.tmTelekom) {
+        rez = initializer.value.detail!.loc![0].tb.toString();
+      }
+      if (type == enmPaymetnComunication.agtsTelefon) {
+        rez = initializer.value.detail!.loc![0].pb.toString();
+      }
+      if (type == enmPaymetnComunication.agtsInternet) {
+        rez = initializer.value.detail!.loc![0].ib.toString();
+      }
     }
-    if (type == enmPaymetnComunication.agtsTelefon) {
-      rez = initializer.value.detail!.loc![0].pb.toString();
-    }
-    if (type == enmPaymetnComunication.agtsInternet) {
-      rez = initializer.value.detail!.loc![0].ib.toString();
-    }
+
     return rez;
   }
 
   String displayMedia(enmPaymentMedia type) {
     var rez = '';
-    if (type == enmPaymentMedia.agtsIpTv) {
-      rez = initializer.value.detail!.loc![0].ipb.toString();
-    }
-    if (type == enmPaymentMedia.cabelTV) {
-      rez = initializer.value.detail!.loc![0].cb.toString();
+    if (initializer.value.detail != null) {
+      if (type == enmPaymentMedia.agtsIpTv) {
+        rez = initializer.value.detail!.loc![0].ipb.toString();
+      }
+      if (type == enmPaymentMedia.cabelTV) {
+        rez = initializer.value.detail!.loc![0].cb.toString();
+      }
     }
     return rez;
   }
 
   String displayCommunal(enmPaymentCommunal type) {
     var rez = '';
-    if (type == enmPaymentCommunal.utils) {
-      rez = initializer.value.detail!.loc![0].ut.toString();
+    if (initializer.value.detail != null) {
+      if (type == enmPaymentCommunal.utils) {
+        rez = initializer.value.detail!.loc![0].ut.toString();
+      }
     }
     return rez;
   }
@@ -704,18 +723,17 @@ class InitializerController extends GetxController {
     cabinet.userUpdate(true);
     final result = await updateUsrInfoRequest.updateInfo(
         name!, lastN!, add!, carN!, gid!, wid!, eid!, cid!);
-    if (result == null) {
-      cabinet.userUpdate(false);
-      Get.find<InitializerController>().onError();
-      return false;
-    } else {
+    if (result != null) {
       debugPrint(result.toJson().toString());
       cabinet.userUpdate(false);
       Future.delayed(const Duration(seconds: 3)).then((_) {
         home_loadInitials();
       });
-
       return true;
+    } else {
+      cabinet.userUpdate(false);
+      Get.find<InitializerController>().onError();
+      return false;
     }
   }
 

@@ -47,10 +47,10 @@ class _SignUpFormState extends State<SignUpForm> {
               ),
               SizedBox(height: 10),
               UIElements.customTextField(
-                  textController: controller.phoneNumber,
-                  key: _formPhone,
-                  type: enmTextFielType.user_register,
-                  length: 8),
+                textController: controller.phoneNumber,
+                key: _formPhone,
+                type: enmTextFielType.user_register,
+              ),
               Column(
                 children: [
                   UIElements.customTextField(
@@ -58,9 +58,6 @@ class _SignUpFormState extends State<SignUpForm> {
                       key: _pass,
                       type: enmTextFielType.password,
                       hidenText: controller.hidePassword.value),
-                  SizedBox(
-                    height: 15,
-                  ),
                   UIElements.customTextField(
                     textController: controller.confPass,
                     key: _confPass,
@@ -79,35 +76,33 @@ class _SignUpFormState extends State<SignUpForm> {
               ),
               const SizedBox(height: defaultPadding / 2),
               Center(
-                child: controller.future_confirm_sms_model == null
-                     
-                    ? Column(
-                        children: [
-                          ElevatedButton(
-                            onPressed: ()  {
-                              if (_formKey.currentState!.validate()) {
-                                if (controller.hide_get_code_btn.value) {
-                                  controller.getCodeRequest(context);
-                                } else {
-                                  controller.sendSmsCode();
+                  child: controller.future_confirm_sms_model == null
+                      ? Column(
+                          children: [
+                            ElevatedButton(
+                              onPressed: () {
+                                if (_formKey.currentState!.validate()) {
+                                  if (controller.hide_get_code_btn.value) {
+                                    controller.getCodeRequest(context);
+                                  } else {
+                                    controller.sendSmsCode();
+                                  }
                                 }
-                              }
-                            },
-                            child: controller.hide_get_code_btn.value
-                                ? Text(LocaleKeys.getCode.tr)
-                                : Text(LocaleKeys.signUp.tr),
-                          ),
-                        ],
-                      )
-                      : controller.buildFutureconfSms()
-              ),
+                              },
+                              child: controller.hide_get_code_btn.value
+                                  ? Text(LocaleKeys.getCode.tr)
+                                  : Text(LocaleKeys.signUp.tr),
+                            ),
+                          ],
+                        )
+                      : controller.buildFutureconfSms()),
               const SizedBox(height: defaultPadding),
-              AlreadyHaveAnAccountCheck(
-                login: false,
-                press: () {
-                  Get.to(() => LoginScreen());
-                },
-              ),
+              // AlreadyHaveAnAccountCheck(
+              //   login: false,
+              //   press: () {
+              //     Get.to(() => LoginScreen());
+              //   },
+              // ),
             ],
           ),
         ),

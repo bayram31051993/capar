@@ -1,5 +1,6 @@
 import 'package:capar/app/modules/controllers/home_controller.dart';
 import 'package:capar/app/modules/pages/Cabinet/pages/InfoTabPayments/elements/info_item.dart';
+import 'package:capar/core/values/strings.dart';
 import 'package:capar/generated/locales.g.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,6 +13,11 @@ class InfoTabPayments extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
+    final number = controller.cabinetInitialize.value.detail!.loc![0].mob =
+        Strings.formatNUmber(
+      controller.cabinetInitialize.value.detail!.loc![0].mob.toString(),
+      enmPaymetnComunication.tmCell,
+    );
     return Padding(
       padding: EdgeInsets.only(top: 30.h),
       child: AlignedGridView.count(
@@ -73,8 +79,7 @@ class InfoTabPayments extends GetView<HomeController> {
                     : LocaleKeys.error.tr;
               } else {
                 content = controller.cabinetInitialize.value.detail != null
-                    ? controller.cabinetInitialize.value.detail!.loc![0].mob
-                        .toString()
+                    ? number
                     : LocaleKeys.error.tr;
               }
               return InfoItem(

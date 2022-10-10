@@ -1,7 +1,10 @@
+import 'package:capar/app/data/models/CardsModel/cards_model.dart';
 import 'package:capar/app/modules/controllers/initializer_controller.dart';
+import 'package:capar/app/modules/controllers/tolegler_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 import '../../generated/locales.g.dart';
 import '../utils/enums.dart';
@@ -36,15 +39,33 @@ abstract class Strings {
   }
 
   static String formatGTSPhoneFromeRaw(String raw) {
+    var number = '';
     if (raw == "-") return "-";
     if (raw.isEmpty || raw == "-") return "";
-    return raw.substring(9).replaceAll(RegExp('-'), '');
+    number = raw.substring(9).replaceAll("+(993) ", '');
+    return number.replaceAll('-', '');
   }
 
   static String formatHomePhoneFromeRaw(String raw) {
+    var number = '';
     if (raw == "-") return "-";
     if (raw.isEmpty || raw == "-") return "";
-    return raw.substring(7).replaceAll(RegExp('-'), '');
+    number = raw.substring(9).replaceAll("+(993) ", '');
+    return number.replaceAll(RegExp('-'), '');
+  }
+
+  static String formatNUmber(String origin, enmPaymetnComunication type) {
+    if (origin.length == 8) {
+      var raw = "+(993) ";
+      raw += origin.substring(0, 2) + '-';
+      raw += origin.substring(2, 4) + '-';
+      raw += origin.substring(4, 6) + '-';
+      raw += origin.substring(6);
+      print("Numbers " + raw);
+      return raw;
+    } else {
+      return origin;
+    }
   }
 
   static String formatPhoneToRaw(String origin, enmPaymentType type) {
@@ -104,6 +125,82 @@ abstract class Strings {
     } else {
       return origin;
     }
+  }
+
+  static Map<String, dynamic> getCommunicationParams(
+      enmPaymetnComunication type, String amount, String phone) {
+    Map<String, dynamic> param = {};
+    var phoneNum = "";
+    ToleglerController controller = Get.put(ToleglerController());
+
+    // if (type.name.startsWith("agts")) {
+    //   phoneNum = Strings.formatGTSPhoneFromeRaw(phone);
+    // } else {
+    //   phoneNum = Strings.formatHomePhoneFromeRaw(phone);
+    // }
+    // phone.replaceAll(RegExp('+(993) '), '');
+    if (controller.card != null) {
+      switch (type) {
+        case enmPaymetnComunication.agtsInternet:
+          param = {
+            "type": 15,
+            "amount": amount,
+            "credent": {
+              "card_num": controller.card.value.bind.replaceAll(' ', ''),
+              "card_owner": controller.card.value.cardHolder,
+              "card_expiry": controller.card.value.expiredDate,
+              "card_cvc": controller.card.value.cvc
+            },
+            "phone":
+                phone.replaceAll('+(993) ', '').replaceAll(RegExp('-'), ''),
+          };
+          break;
+        case enmPaymetnComunication.agtsTelefon:
+          param = {
+            "phone":
+                phone.replaceAll('+(993) ', '').replaceAll(RegExp('-'), ''),
+            "amount": amount,
+            "credent": {
+              "card_num": controller.card.value.bind.replaceAll(' ', ''),
+              "card_owner": controller.card.value.cardHolder,
+              "card_expiry": controller.card.value.expiredDate,
+              "card_cvc": controller.card.value.cvc
+            },
+          };
+          break;
+        case enmPaymetnComunication.tmCell:
+          param = {
+            "type": 8,
+            "amount": amount,
+            "credent": {
+              "card_num": controller.card.value.bind.replaceAll(' ', ''),
+              "card_owner": controller.card.value.cardHolder,
+              "card_expiry": controller.card.value.expiredDate,
+              "card_cvc": controller.card.value.cvc
+            },
+            "phone":
+                phone.replaceAll('+(993) ', '').replaceAll(RegExp('-'), ''),
+          };
+          break;
+        case enmPaymetnComunication.tmTelekom:
+          param = {
+            "type": 7,
+            "amount": amount,
+            "credent": {
+              "card_num": controller.card.value.bind.replaceAll(' ', ''),
+              "card_owner": controller.card.value.cardHolder,
+              "card_expiry": controller.card.value.expiredDate,
+              "card_cvc": controller.card.value.cvc
+            },
+            "phone":
+                phone.replaceAll('+(993) ', '').replaceAll(RegExp('-'), ''),
+          };
+          break;
+        default:
+      }
+      return param;
+    }
+    return param;
   }
 
   static Map<String, dynamic> getParams(
@@ -1164,7 +1261,7 @@ abstract class Strings {
         return LocaleKeys.notValid.tr;
       }
     } else if (type == enmTextFielType.user_register) {
-      if (value!.length != 8) {
+      if (value!.length != 18) {
         return LocaleKeys.notValid.tr;
       }
       // var str = value.substring(6, 9);

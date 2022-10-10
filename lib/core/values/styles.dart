@@ -116,8 +116,8 @@ abstract class TextInputStyles {
       MaskTextInputFormatter(mask: '###', filter: {"#": RegExp(r'[0-9]')});
   static final maskCellPhone = MaskTextInputFormatter(
       mask: '+(993) ##-##-##-##', filter: {"#": RegExp(r'[0-9]')});
-  static final maskRegister =
-      MaskTextInputFormatter(mask: '6#######', filter: {"#": RegExp(r'[0-9]')});
+  static final maskRegister = MaskTextInputFormatter(
+      mask: '+(993) ##-##-##-##', filter: {"#": RegExp(r'[0-9]')});
   static final maskHomePhone = MaskTextInputFormatter(
       mask: '+(993) ##-##-##-##', filter: {"#": RegExp(r'[0-9]')});
   static final maskAbonentPhone = MaskTextInputFormatter(
@@ -173,7 +173,7 @@ abstract class FrontStyles {
       return inputDecoration(
         Strings.title(type),
         Strings.iconData(type),
-        hintText: '6',
+        hintText: '+(993) xx-xx-xx-xx',
         // suffixText: controller.phoneNumber,
         suffix: suffix,
       );

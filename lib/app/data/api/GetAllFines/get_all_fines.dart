@@ -14,9 +14,14 @@ class GetAllFinesPost {
   Future<GetAllPygg?> getAllPyggpost(carNumber) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString('token');
+    String? sessionId = prefs.getString('sessionId');
     try {
-      final response = await http.post(Uri.parse(getAllFines + carNumber),
-          headers: {"X-CSRFToken": "$token"});
+      final response =
+          await http.post(Uri.parse(getAllFines + carNumber), headers: {
+        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+        'X-CSRFToken': '$token',
+        'Cookie': 'csrftoken=$token; sessionid=$sessionId',
+      });
       debugPrint("Get fines code: " + response.statusCode.toString());
       debugPrint("Get fines body: " + response.body);
       if (response.statusCode == 200 || response.statusCode < 300) {

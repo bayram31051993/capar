@@ -44,10 +44,10 @@ class LoginForm extends GetView<InitializerController> {
                     ),
                     SizedBox(height: 10.h),
                     UIElements.customTextField(
-                        textController: controller.phoneNumber,
-                        key: _formPhone,
-                        type: enmTextFielType.user_register,
-                        length: 8),
+                      textController: controller.phoneNumber,
+                      key: _formPhone,
+                      type: enmTextFielType.user_register,
+                    ),
                     Obx(
                       () => UIElements.customTextField(
                           textController: controller.pass,
@@ -64,13 +64,13 @@ class LoginForm extends GetView<InitializerController> {
                         },
                         child: controller.authRequestSending.value
                             ? Center(
-                              child: Container(
-                                  height: 15.h,
-                                  width: 15.w,
-                                  child:const CircularProgressIndicator(
-                                    color: Colors.white,
-                                  )),
-                            )
+                                child: Container(
+                                    height: 15.h,
+                                    width: 15.w,
+                                    child: const CircularProgressIndicator(
+                                      color: Colors.white,
+                                    )),
+                              )
                             : Text(
                                 LocaleKeys.login.tr,
                                 style: Theme.of(context)

@@ -131,6 +131,7 @@ class HomeBody extends StatelessWidget {
     //     ],
     //   ),
     // );
+
     return Scaffold(
       body: Stack(
         children: [
@@ -157,64 +158,44 @@ class HomeBody extends StatelessWidget {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      controller.cabinetInitialize.value
-                                                  .detail !=
-                                              null
-                                          ? '${controller.cabinetInitialize.value.detail!.loc![0].frn} '
-                                              '${controller.cabinetInitialize.value.detail!.loc![0].lsn}'
-                                          : "Bayram Komekov",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline6!
-                                          .copyWith(
-                                              fontSize: 35.sp,
-                                              fontWeight: FontWeight.bold),
-                                    ),
-                                    SizedBox(
-                                      height: 10.h,
-                                    ),
-                                    Text(
-                                      controller.cabinetInitialize.value
-                                                  .detail !=
-                                              null
-                                          ? '+993${controller.cabinetInitialize.value.detail!.loc![0].mob}'
-                                          : '+99365853833  50.0 tmt',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline6!
-                                          .copyWith(
-                                              fontSize: 18.sp,
-                                              fontWeight: FontWeight.w500),
-                                    ),
-                                  ],
+                                Obx(
+                                  () => Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        controller.cabinetInitialize.value
+                                                    .detail !=
+                                                null
+                                            ? '${controller.cabinetInitialize.value.detail!.loc![0].frn} '
+                                                '${controller.cabinetInitialize.value.detail!.loc![0].lsn}'
+                                            : "Bayram Komekov",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline6!
+                                            .copyWith(
+                                                fontSize: 35.sp,
+                                                fontWeight: FontWeight.bold),
+                                      ),
+                                      SizedBox(
+                                        height: 10.h,
+                                      ),
+                                      Text(
+                                        controller.cabinetInitialize.value
+                                                    .detail !=
+                                                null
+                                            ? '+993${controller.cabinetInitialize.value.detail!.loc![0].mob}'
+                                            : '+99365853833  50.0 tmt',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline6!
+                                            .copyWith(
+                                                fontSize: 18.sp,
+                                                fontWeight: FontWeight.w500),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                                // Center(
-                                //   child: Column(
-                                //     children: [
-                                //       Text(
-                                //         initController.initializer.value.detail != null
-                                //             ? LocaleKeys.balance.tr
-                                //             : "Balance",
-                                //         style: Theme.of(context).textTheme.headline6!.copyWith(
-                                //             fontSize: 20.sp, fontWeight: FontWeight.bold),
-                                //       ),
-                                //       SizedBox(
-                                //         height: 10.h,
-                                //       ),
-                                //       Text(
-                                //         initController.initializer.value.detail != null
-                                //             ? '${initController.initializer.value.detail!.loc![0].mb} '
-                                //             : "25.0 manat",
-                                //         style: Theme.of(context).textTheme.headline6!.copyWith(
-                                //             fontSize: 20.sp, fontWeight: FontWeight.bold),
-                                //       ),
-                                //     ],
-                                //   ),
-                                // ),
                                 IconButton(
                                   alignment: Alignment.topCenter,
                                   onPressed: () =>
